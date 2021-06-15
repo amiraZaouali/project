@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:foodybite_app/pallete.dart';
 
-class RoundedButton extends StatelessWidget {
+class RoundedButton extends StatefulWidget {
   const RoundedButton({
     Key key,
     this.onPress,
     @required this.buttonName,
-    @required this.routeName
   }) : super(key: key);
   final Function onPress;
   final String buttonName;
-  final Widget routeName;
 
+  @override
+  _RoundedButtonState createState() => _RoundedButtonState();
+}
+
+class _RoundedButtonState extends State<RoundedButton> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,10 +25,13 @@ class RoundedButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         color: kBlue,
       ),
-      child: FlatButton(
-        onPressed: onPress,
+      child: TextButton(
+        onPressed: () {
+          print(
+              "heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeh");
+        },
         child: Text(
-          buttonName,
+          widget.buttonName,
           style: kBodyText.copyWith(fontWeight: FontWeight.bold),
         ),
       ),

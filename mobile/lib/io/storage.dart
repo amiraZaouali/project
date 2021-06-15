@@ -1,6 +1,6 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart ';
-class SecureStoreMixin{
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+class SecureStoreMixin {
   final secureStore = new FlutterSecureStorage();
 
   void setSecureStore(String key, String data) async {
@@ -10,5 +10,4 @@ class SecureStoreMixin{
   void getSecureStore(String key, Function callback) async {
     await secureStore.read(key: key).then(callback);
   }
-
 }

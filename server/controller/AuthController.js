@@ -40,8 +40,7 @@ exports.LoginUser = (req, res) => {
                         } else {
                             const data = {
                                 userID: user._id,
-                                firstName: user.firstName,
-                                lastName: user.lastName,
+                                name: user.name,
                                 email: user.email,
                                 token: user.token
                             }

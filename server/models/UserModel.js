@@ -16,18 +16,13 @@ const userSchema = mongoose.Schema({
         required: [true, 'The password field is required!'],
         minlength: 5
     },
-    firstName: {
+    name: {
         type: String,
         required: [true, 'The first name field is required!'],
         trim: true,
         maxlength: 100
     },
-    lastName: {
-        type: String,
-        required: [true, 'The last name field is required!'],
-        trim: true,
-        maxlength: 100
-    },
+    
     phoneNumber: {
         type: String,
         requried: [true, 'Number must be provided'],
@@ -37,7 +32,7 @@ const userSchema = mongoose.Schema({
     token: {
         type: String
     }
-}, { collection: 'Users' });
+}, { collection: 'HouseUser' });
 //saving user data
 userSchema.pre('save', function (next) {
     var user = this;

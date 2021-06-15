@@ -1,12 +1,39 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodybite_app/pallete.dart';
 import 'package:foodybite_app/screens/home-screen.dart';
+import 'package:foodybite_app/service/services.dart';
 import 'package:foodybite_app/widgets/widgets.dart';
 
-class CreateNewAccount extends StatelessWidget {
+class CreateNewAccount extends StatefulWidget {
+  @override
+  _CreateNewAccountState createState() => _CreateNewAccountState();
+}
+
+class _CreateNewAccountState extends State<CreateNewAccount> {
+  TextEditingController user = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController pass = TextEditingController();
+  TextEditingController cpass = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  buttonAction() async {
+    print("cpas : ${cpass.text} ============> pass : ${pass.text}");
+    if (pass.text == cpass.text && pass.text.length > 0) {
+      var obj = {
+        "name": user.text,
+        "email": email.text,
+        "password": pass.text,
+        "phoneNumber": phone.text
+      };
+      await Services().registerUser(obj);
+    } else {
+      showAlertDialog(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,32 +92,33 @@ class CreateNewAccount extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    TextInputField(
-                      icon: FontAwesomeIcons.user,
-                      hint: 'User',
-                      inputType: TextInputType.name,
-                      inputAction: TextInputAction.next,
-                    ),
-                    TextInputField(
-                      icon: FontAwesomeIcons.envelope,
-                      hint: 'Email',
-                      inputType: TextInputType.emailAddress,
-                      inputAction: TextInputAction.next,
-                    ),
-                    PasswordInput(
-                      icon: FontAwesomeIcons.lock,
-                      hint: 'Password',
-                      inputAction: TextInputAction.next,
-                    ),
-                    PasswordInput(
-                      icon: FontAwesomeIcons.lock,
-                      hint: 'Confirm Password',
-                      inputAction: TextInputAction.done,
-                    ),
+                    inputTxt('Username', user, size, FontAwesomeIcons.user),
+                    inputTxt('Email', email, size, FontAwesomeIcons.envelope),
+                    inputTxt(
+                        'Phone Number', phone, size, FontAwesomeIcons.phone),
+                    password('Password', pass, size),
+                    password('Confirm Password', cpass, size),
                     SizedBox(
                       height: 25,
                     ),
-                    RoundedButton(buttonName: 'Register'),
+                    Container(
+                      height: size.height * 0.08,
+                      width: size.width * 0.8,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: kBlue,
+                      ),
+                      child: TextButton(
+                        onPressed: () async {
+                          await buttonAction();
+                        },
+                        child: Text(
+                          "Register",
+                          style:
+                              kBodyText.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 30,
                     ),
@@ -103,7 +131,10 @@ class CreateNewAccount extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
                           },
                           child: Text(
                             'Login',
@@ -123,6 +154,96 @@ class CreateNewAccount extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  void showAlertDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Wrong password confirmation"),
+            content: Text("Please verify the password you entred"),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                  isDefaultAction: true,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("Confirm")),
+            ],
+          );
+        });
+  }
+
+  Widget password(txt, ctrl, size) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Container(
+        height: size.height * 0.08,
+        width: size.width * 0.8,
+        decoration: BoxDecoration(
+          color: Colors.grey[500].withOpacity(0.5),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Center(
+          child: TextField(
+            controller: ctrl,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Icon(
+                  FontAwesomeIcons.lock,
+                  size: 28,
+                  color: kWhite,
+                ),
+              ),
+              hintText: txt,
+              hintStyle: kBodyText,
+            ),
+            obscureText: true,
+            style: kBodyText,
+            keyboardType: TextInputType.visiblePassword,
+            textInputAction: TextInputAction.next,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget inputTxt(txt, ctrl, size, icon) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Container(
+        height: size.height * 0.08,
+        width: size.width * 0.8,
+        decoration: BoxDecoration(
+          color: Colors.grey[500].withOpacity(0.5),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Center(
+          child: TextField(
+            controller: ctrl,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Icon(
+                  icon,
+                  size: 28,
+                  color: kWhite,
+                ),
+              ),
+              hintText: txt,
+              hintStyle: kBodyText,
+            ),
+            style: kBodyText,
+            keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.next,
+          ),
+        ),
+      ),
     );
   }
 }
