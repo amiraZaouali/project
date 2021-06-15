@@ -51,6 +51,7 @@ userSchema.pre('save', function (next) {
 });
 //for comparing the users entered password with database duing login 
 userSchema.methods.comparePassword = function (candidatePassword, callBack) {
+    console.log(this.password);
     bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
         if (err) return callBack(err);
         callBack(null, isMatch);

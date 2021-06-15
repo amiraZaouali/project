@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodybite_app/pallete.dart';
 import 'package:foodybite_app/screens/home-screen.dart';
 import 'package:foodybite_app/service/services.dart';
+import 'package:foodybite_app/utils/Helpers.dart';
 import 'package:foodybite_app/widgets/widgets.dart';
 
 class CreateNewAccount extends StatefulWidget {
@@ -30,7 +31,8 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
       };
       await Services().registerUser(obj);
     } else {
-      showAlertDialog(context);
+      Utils.showAlertDialog(context, "Verify informations",
+          "Oops it looks like that the password confirmation is wrong!");
     }
   }
 
@@ -155,25 +157,6 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
         )
       ],
     );
-  }
-
-  void showAlertDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return CupertinoAlertDialog(
-            title: Text("Wrong password confirmation"),
-            content: Text("Please verify the password you entred"),
-            actions: <Widget>[
-              CupertinoDialogAction(
-                  isDefaultAction: true,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Confirm")),
-            ],
-          );
-        });
   }
 
   Widget password(txt, ctrl, size) {

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:foodybite_app/pallete.dart';
 
 class PasswordInput extends StatelessWidget {
-  const PasswordInput({
-    Key key,
-    @required this.icon,
-    @required this.hint,
-    this.inputType,
-    this.inputAction,
-    this.ctrl
-  }) : super(key: key);
+  const PasswordInput(
+      {Key key,
+      @required this.icon,
+      @required this.hint,
+      this.inputType,
+      this.inputAction,
+      this.ctrl})
+      : super(key: key);
   final TextEditingController ctrl;
   final IconData icon;
   final String hint;
@@ -30,6 +30,7 @@ class PasswordInput extends StatelessWidget {
         ),
         child: Center(
           child: TextField(
+            controller: ctrl,
             decoration: InputDecoration(
               border: InputBorder.none,
               prefixIcon: Padding(

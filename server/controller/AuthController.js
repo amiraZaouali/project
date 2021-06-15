@@ -24,9 +24,10 @@ exports.RegisterUser = async (req, res) => {
     });
 }
 exports.LoginUser = (req, res) => {
+    console.log(req.body)
     User.findOne({ 'email': req.body.email }, (err, user) => {
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User email not found!' });
+            return res.status(400).json({ success: false, message: 'User email not found!' });
         } else {
             user.comparePassword(req.body.password, (err, isMatch) => {
                 console.log(isMatch);

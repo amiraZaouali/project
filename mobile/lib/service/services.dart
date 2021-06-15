@@ -18,13 +18,15 @@ class Services {
   loginUser(Map<String, dynamic> obj) async {
     var response =
         await http.post(Uri.parse(serverUrl + "users/login"), body: obj);
-    print(response.body);
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       if (result['success']) {
-        print(result);
-        //await setStorage(result['']);
+        return result;
+      } else {
+        return null;
       }
+    } else {
+      return false;
     }
   }
 
@@ -35,8 +37,7 @@ class Services {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       if (result['success']) {
-        print(result);
-        // await setStorage(result[''])
+        return result;
       }
     }
   }

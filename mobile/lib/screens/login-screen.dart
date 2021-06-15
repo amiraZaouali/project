@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodybite_app/pallete.dart';
 import 'package:foodybite_app/screens/home-screen.dart';
+import 'package:foodybite_app/screens/screens.dart';
 import 'package:foodybite_app/service/services.dart';
+import 'package:foodybite_app/utils/Helpers.dart';
+import 'package:foodybite_app/utils/storage.dart';
 import 'package:foodybite_app/widgets/widgets.dart';
 
 import 'create-new-account.dart';
@@ -16,6 +19,24 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    handleLogin() async {
+      if (_ncontroller.text.length > 3 && _pcontroller.text.length > 6) {
+        var result = await Services().loginUser(
+            {"email": _ncontroller.text, "password": _pcontroller.text});
+        if (result.runtimeType != bool && result.containsKey("userID")) {
+          PreferenceUtils.setString("uinfo", result);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        } else if (result != null && result == false) {
+          Utils.showAlertDialog(context, "Wrong credientials",
+              "Email and/or Password is/are wrong!");
+        }
+      } else {
+        Utils.showAlertDialog(context, "Wrong credientials",
+            "Email and Password field shouldn't be empty!");
+      }
+    }
+
     var size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -74,12 +95,7 @@ class LoginScreen extends StatelessWidget {
                       color: kBlue,
                     ),
                     child: TextButton(
-                      onPressed: () async {
-                        print(await Services().loginUser({
-                          "email": _ncontroller.text,
-                          "password": _pcontroller.text
-                        }));
-                      },
+                      onPressed: handleLogin,
                       child: Text(
                         "Login",
                         style: kBodyText.copyWith(fontWeight: FontWeight.bold),
