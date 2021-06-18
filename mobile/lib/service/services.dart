@@ -20,6 +20,7 @@ class Services {
         await http.post(Uri.parse(serverUrl + "users/login"), body: obj);
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
+      print(result);
       if (result['success']) {
         return result;
       } else {

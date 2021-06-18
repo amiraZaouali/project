@@ -16,7 +16,7 @@ class PreferenceUtils {
     return _prefsInstance.getString(key) ?? defValue ?? "";
   }
 
-  static Future<bool> setString(String key, String value) async {
+  static Future<dynamic> setString(String key, dynamic value) async {
     var prefs = await _instance;
     return prefs?.setString(key, value) ?? Future.value(false);
   }

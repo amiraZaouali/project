@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,14 +20,14 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     handleLogin() async {
-      if (_ncontroller.text.length > 3 && _pcontroller.text.length > 6) {
+      if (_ncontroller.text.length > 3 && _pcontroller.text.length >= 6) {
         var result = await Services().loginUser(
             {"email": _ncontroller.text, "password": _pcontroller.text});
-        if (result.runtimeType != bool && result.containsKey("userID")) {
-          PreferenceUtils.setString("uinfo", result);
+        if (result['success']) {
+          PreferenceUtils.setString("uinfo", jsonEncode(result));
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomePage()));
-        } else if (result != null && result == false) {
+        } else if (!result['success']) {
           Utils.showAlertDialog(context, "Wrong credientials",
               "Email and/or Password is/are wrong!");
         }
