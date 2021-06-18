@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'Fitness-App-HomeScreen.dart';
 
+import '../pages/furniture.dart';
+
 
 class LandingScreen extends StatefulWidget {
   final String image;
@@ -59,8 +61,7 @@ class _LandingScreenState extends State<LandingScreen> {
                           shape: BoxShape.circle,
                           color: Colors.white
                         ),
-                        child: Center(
-                          child: Icon(Icons.favorite_border, size: 20,),
+                        child: Center(                        child: Icon(Icons.favorite_border, size: 20,),
                         ),
                       )
                     ],
@@ -139,7 +140,7 @@ class _LandingScreenState extends State<LandingScreen> {
                           ),
                        child: GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => FitnessAppHomeScreen()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Furniture()));
                           },
                           child: Center(
                             child: Text('Check Now', style: TextStyle(fontWeight: FontWeight.bold),)  
