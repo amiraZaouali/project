@@ -26,7 +26,6 @@ class Furniture extends StatelessWidget {
               ),
               child: TitleLarge(
                 title: 'Furniture',
-                icon: Icons.add_shopping_cart,
               ),
             ),
             SizedBox(height: 20),
@@ -72,10 +71,8 @@ class Furniture extends StatelessWidget {
     physics: BouncingScrollPhysics(),
     shrinkWrap: true,
     itemCount: lampList.length,
-    itemBuilder: (context, int index) => Lamp(
-      item: lampList[index],
-      index: index,
-    ),
+    itemBuilder: (context, int index) =>
+        Lamp(item: lampList[index], index: index, nextScreen: Details()),
   );
   final buildFurnitureCategories = Container(
     height: 100.0,

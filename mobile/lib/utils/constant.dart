@@ -19,17 +19,11 @@ const List lampsImage = [
   {'image': '${imagePath}/1.jpg'},
   {'image': '${imagePath}/2.jpg'},
   {'image': '${imagePath}/3.jpg'},
-  {'image': '${imagePath}/3.jpg'},
-  {'image': '${imagePath}/3.jpg'},
-  {'image': '${imagePath}/3.jpg'},
 ];
 List<ProfileMenu> lampList = [
-  // ProfileMenu(title: 'Landscape', subTitle: '384'),
   ProfileMenu(title: 'Discus Pendant', subTitle: '274'),
-  ProfileMenu(title: 'Mushroom Lamp', subTitle: '374'),
+  ProfileMenu(title: 'Mushrm Lamp', subTitle: '374'),
   ProfileMenu(title: 'Titanic Pendant', subTitle: '562'),
-  ProfileMenu(title: 'Torn Lighting', subTitle: '105'),
-  ProfileMenu(title: 'Abduction Pendant', subTitle: '365'),
 ];
 const List profileItems = [
   {'count': '846', 'name': 'Collect'},

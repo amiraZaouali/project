@@ -397,6 +397,10 @@ LineChartData mainData() {
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
+  List<Color> gradientColors2 = [
+    const Color(0xffc21500),
+    const Color(0xffffc500),
+  ];
   return LineChartData(
     gridData: FlGridData(
       show: true,
@@ -418,23 +422,31 @@ LineChartData mainData() {
       show: true,
       bottomTitles: SideTitles(
         showTitles: true,
-        reservedSize: 22,
+        reservedSize: 10,
         getTextStyles: (value) => const TextStyle(
             color: Color(0xff68737d),
             fontWeight: FontWeight.bold,
             fontSize: 16),
         getTitles: (value) {
           switch (value.toInt()) {
+            case 0:
+              return 'Mon';
+            case 1:
+              return 'Tue';
             case 2:
-              return 'MAR';
+              return 'Wed';
+            case 3:
+              return 'Thu';
+            case 4:
+              return 'Fri';
             case 5:
-              return 'JUN';
-            case 8:
-              return 'SEP';
+              return 'Sat';
+            case 6:
+              return 'Sun';
           }
           return '';
         },
-        margin: 8,
+        margin: 22,
       ),
       leftTitles: SideTitles(
         showTitles: true,
@@ -445,12 +457,14 @@ LineChartData mainData() {
         ),
         getTitles: (value) {
           switch (value.toInt()) {
-            case 1:
-              return '10k';
-            case 3:
-              return '30k';
-            case 5:
-              return '50k';
+            case 2:
+              return '2k';
+            case 4:
+              return '4k';
+            case 6:
+              return '6k';
+            case 8:
+              return '8k';
           }
           return '';
         },
@@ -462,19 +476,19 @@ LineChartData mainData() {
         show: true,
         border: Border.all(color: const Color(0xff37434d), width: 1)),
     minX: 0,
-    maxX: 11,
+    maxX: 6,
     minY: 0,
-    maxY: 6,
+    maxY: 8,
     lineBarsData: [
       LineChartBarData(
         spots: [
           FlSpot(0, 3),
-          FlSpot(2.6, 2),
-          FlSpot(4.9, 5),
-          FlSpot(6.8, 3.1),
-          FlSpot(8, 4),
-          FlSpot(9.5, 3),
-          FlSpot(11, 4),
+          FlSpot(1, 2),
+          FlSpot(2, 5),
+          FlSpot(3, 3.1),
+          FlSpot(4, 4),
+          FlSpot(5, 3),
+          FlSpot(6, 4),
         ],
         isCurved: true,
         colors: gradientColors,
@@ -487,6 +501,29 @@ LineChartData mainData() {
           show: true,
           colors:
               gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+        ),
+      ),
+      LineChartBarData(
+        spots: [
+          FlSpot(0, 2.5),
+          FlSpot(1, 2.8),
+          FlSpot(2, 3.35),
+          FlSpot(3, 2.5),
+          FlSpot(4, 4.8),
+          FlSpot(5, 2.5),
+          FlSpot(6, 1.2),
+        ],
+        isCurved: true,
+        colors: gradientColors2,
+        barWidth: 5,
+        isStrokeCapRound: true,
+        dotData: FlDotData(
+          show: false,
+        ),
+        belowBarData: BarAreaData(
+          show: true,
+          colors:
+              gradientColors2.map((color) => color.withOpacity(0.3)).toList(),
         ),
       ),
     ],

@@ -4,10 +4,17 @@ import '../../utils/constant.dart';
 import '../../widgets/furniture/custom_side_button.dart';
 import 'package:flutter/material.dart';
 
-class Lamp extends StatelessWidget {
+class Lamp extends StatefulWidget {
   final ProfileMenu item;
   final int index;
   Lamp({this.item, this.index});
+
+  @override
+  _LampState createState() => _LampState();
+}
+
+class _LampState extends State<Lamp> {
+  bool _isOn = false;
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
@@ -32,7 +39,7 @@ class Lamp extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
                   child: Image.asset(
-                    lampsImage[index]['image'],
+                    lampsImage[widget.index]['image'],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -87,7 +94,7 @@ class Lamp extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    item.title,
+                                    widget.item.title,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 17.0,
@@ -106,7 +113,7 @@ class Lamp extends StatelessWidget {
                                 // crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
                                   Text(
-                                    item.subTitle,
+                                    widget.item.subTitle,
                                     style: TextStyle(
                                       color: profile_info_background,
                                       fontSize: 30.0,
@@ -138,8 +145,13 @@ class Lamp extends StatelessWidget {
                         bottom: 20.0,
                         right: -20.0,
                         child: CupertinoSwitch(
-                          value: true,
-                          onChanged: (bool value) {},
+                          value: _isOn,
+                          activeColor: Colors.lightBlue,
+                          onChanged: (bool value) {
+                            setState(() {
+                              _isOn = !_isOn;
+                            });
+                          },
                         )
                         //   CustomSideButton(
                         //     icon: Icons.arrow_forward,
