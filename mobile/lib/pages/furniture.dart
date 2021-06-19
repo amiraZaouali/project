@@ -11,10 +11,11 @@ class Furniture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
-    return Material(
+    return SafeArea(
+        child: Material(
       color: Colors.white,
       child: SingleChildScrollView(
-              child: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
@@ -28,23 +29,11 @@ class Furniture extends StatelessWidget {
                 icon: Icons.add_shopping_cart,
               ),
             ),
-            SizedBox(height:20),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-              ),
-              child: TitleSmall(
-                subTitle: 'Good quality item',
-                title: 'Modern',
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
+            SizedBox(height: 20),
             buildLampsWithSlider(),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
               child: TitleSmall(
                 subTitle: 'In recent month',
                 title: 'Popular',
@@ -58,13 +47,13 @@ class Furniture extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 
   Container buildLampsWithSlider() {
     return Container(
       //color: Colors.yellow,
-      height:300,
+      height: 300,
       child: Stack(
         children: <Widget>[
           buildLamps,
@@ -84,9 +73,9 @@ class Furniture extends StatelessWidget {
     shrinkWrap: true,
     itemCount: lampList.length,
     itemBuilder: (context, int index) => Lamp(
-          item: lampList[index],
-          index: index,
-        ),
+      item: lampList[index],
+      index: index,
+    ),
   );
   final buildFurnitureCategories = Container(
     height: 100.0,
@@ -95,8 +84,8 @@ class Furniture extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: furnitureCategoriesList.length,
       itemBuilder: (context, int index) => FurnitureCategory(
-            item: furnitureCategoriesList[index],
-          ),
+        item: furnitureCategoriesList[index],
+      ),
     ),
   );
 }

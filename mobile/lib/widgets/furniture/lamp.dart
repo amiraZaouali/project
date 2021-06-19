@@ -1,4 +1,4 @@
-
+import 'package:flutter/cupertino.dart';
 
 import '../../utils/constant.dart';
 import '../../widgets/furniture/custom_side_button.dart';
@@ -14,7 +14,7 @@ class Lamp extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-        height: index == 0 ? 350 : 300,
+        height: 350,
         //color: Colors.red,
         child: Container(
           margin: EdgeInsets.only(left: 25.0),
@@ -24,10 +24,8 @@ class Lamp extends StatelessWidget {
             //fit: StackFit.passthrough,
             children: <Widget>[
               Container(
-                height: index == 0 ? 250.0 : 200.0,
-                width: index == 0
-                    ? deviceSize.width * 0.5
-                    : deviceSize.width * 0.4,
+                height: 250.0,
+                width: deviceSize.width * 0.5,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -40,10 +38,8 @@ class Lamp extends StatelessWidget {
                 ),
               ),
               Container(
-                height: index == 0 ? 250.0 : 200.0,
-                width: index == 0
-                    ? deviceSize.width * 0.5
-                    : deviceSize.width * 0.4,
+                height: 250.0,
+                width: deviceSize.width * 0.5,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -58,7 +54,7 @@ class Lamp extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: index == 0 ? 20.0 : 40.0,
+                bottom: 40.0,
                 child: Stack(
                   overflow: Overflow.visible,
                   children: <Widget>[
@@ -67,9 +63,7 @@ class Lamp extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                       child: Container(
                         // height: 110.0,
-                        width: index == 0
-                            ? deviceSize.width * 0.4
-                            : deviceSize.width * 0.3,
+                        width: deviceSize.width * 0.4,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
                           // color: Colors.white,
@@ -96,20 +90,12 @@ class Lamp extends StatelessWidget {
                                     item.title,
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: index == 0 ? 17.0 : 14,
+                                      fontSize: 17.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   SizedBox(
                                     height: 5.0,
-                                  ),
-                                  Text(
-                                    'Matter made',
-                                    style: TextStyle(
-                                      color: furnitureCateDisableColor,
-                                      fontSize: index == 0 ? 12.0 : 9,
-                                      fontWeight: FontWeight.bold,
-                                    ),
                                   ),
                                 ],
                               ),
@@ -123,7 +109,7 @@ class Lamp extends StatelessWidget {
                                     item.subTitle,
                                     style: TextStyle(
                                       color: profile_info_background,
-                                      fontSize: index == 0 ? 30.0 : 20.0,
+                                      fontSize: 30.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -136,7 +122,7 @@ class Lamp extends StatelessWidget {
                                       'USD',
                                       style: TextStyle(
                                         color: profile_info_background,
-                                        fontSize: index == 0 ? 15.0 : 10.0,
+                                        fontSize: 15.0,
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ),
@@ -149,19 +135,24 @@ class Lamp extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      bottom: 20.0,
-                      right: -20.0,
-                      child: CustomSideButton(
-                        icon: Icons.arrow_forward,
-                        fxn: () {
-                          Navigator.pushNamed(
-                            context,
-                            '/selectedItem',
-                            arguments: lampsImage[index]['image'],
-                          );
-                        },
-                      ),
-                    ),
+                        bottom: 20.0,
+                        right: -20.0,
+                        child: CupertinoSwitch(
+                          value: true,
+                          onChanged: (bool value) {},
+                        )
+                        //   CustomSideButton(
+                        //     icon: Icons.arrow_forward,
+                        //     fxn: () {
+                        //       Navigator.pushNamed(
+                        //         context,
+                        //         '/selectedItem',
+                        //         arguments: lampsImage[index]['image'],
+                        //       );
+                        //     },
+                        //   ),
+                        // ),
+                        )
                   ],
                 ),
               ),
