@@ -71,8 +71,10 @@ class Furniture extends StatelessWidget {
     physics: BouncingScrollPhysics(),
     shrinkWrap: true,
     itemCount: lampList.length,
-    itemBuilder: (context, int index) =>
-        Lamp(item: lampList[index], index: index, nextScreen: Details()),
+    itemBuilder: (context, int index) => Lamp(
+      item: lampList[index],
+      index: index,
+    ),
   );
   final buildFurnitureCategories = Container(
     height: 100.0,

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:foodybite_app/pages/circular-chart.dart';
 import 'package:foodybite_app/screens/Fitness-App-HomeScreen.dart';
 import 'package:foodybite_app/screens/FitnessAppTheme.dart';
 import 'package:foodybite_app/utils/storage.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomePage());
+        home: PieChartSample2());
   }
 }
 
