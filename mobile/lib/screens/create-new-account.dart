@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodybite_app/pallete.dart';
-import 'package:foodybite_app/screens/home-screen.dart';
+import 'package:foodybite_app/pages/home_page.dart';
+import 'package:foodybite_app/screens/login-screen.dart';
 import 'package:foodybite_app/service/services.dart';
 import 'package:foodybite_app/utils/Helpers.dart';
+import 'package:foodybite_app/widgets/afterRegistration.dart';
 import 'package:foodybite_app/widgets/widgets.dart';
 
 class CreateNewAccount extends StatefulWidget {
@@ -29,7 +31,14 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
         "password": pass.text,
         "phoneNumber": phone.text
       };
-      await Services().registerUser(obj);
+      var result = await Services().registerUser(obj);
+
+      if (result['success']) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AfterReg(username: user.text)));
+      }
     } else {
       Utils.showAlertDialog(context, "Verify informations",
           "Oops it looks like that the password confirmation is wrong!");
@@ -128,7 +137,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Already have an account?',
+                          'Already have an account? ',
                           style: kBodyText,
                         ),
                         GestureDetector(
@@ -136,7 +145,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                    builder: (context) => LoginScreen()));
                           },
                           child: Text(
                             'Login',

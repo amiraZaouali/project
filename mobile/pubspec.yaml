@@ -35,6 +35,10 @@ dependencies:
   flutter_secure_storage: ^4.2.0
   fl_chart:
   shared_preferences:
+  glass_kit: ^2.0.1
+  rflutter_alert:
+  image_picker:
+  flutter_swiper:
 
 dev_dependencies:
   flutter_test:

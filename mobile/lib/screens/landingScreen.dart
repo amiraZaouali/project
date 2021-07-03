@@ -1,3 +1,7 @@
+import 'package:foodybite_app/widgets/glass.dart';
+import 'package:foodybite_app/widgets/room_card/room_devices.dart';
+import 'package:foodybite_app/widgets/room_card/room_status_log.dart';
+
 import '../Animations/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 
@@ -52,18 +56,6 @@ class _LandingScreenState extends State<LandingScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.white),
-                      child: Center(
-                        child: Icon(
-                          Icons.favorite_border,
-                          size: 20,
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -89,6 +81,20 @@ class _LandingScreenState extends State<LandingScreen> {
                           children: <Widget>[
                             FadeAnimation(
                                 1.3,
+                                GContainer(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      const RoomDevices(),
+                                      const RoomStatusLog()
+                                    ],
+                                  ),
+                                )),
+                            SizedBox(height: 10),
+                            FadeAnimation(
+                                1.3,
                                 Text(
                                   "Livingroom",
                                   style: TextStyle(
@@ -96,82 +102,6 @@ class _LandingScreenState extends State<LandingScreen> {
                                       fontSize: 50,
                                       fontWeight: FontWeight.bold),
                                 )),
-                            SizedBox(
-                              height: 25,
-                            ),
-                            FadeAnimation(
-                                1.4,
-                                Text(
-                                  "pawer",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                )),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: <Widget>[
-                                FadeAnimation(
-                                    1.5,
-                                    Container(
-                                      width: 60,
-                                      height: 40,
-                                      margin: EdgeInsets.only(right: 20),
-                                      child: Center(
-                                          child: Text(
-                                        'TV',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    )),
-                                FadeAnimation(
-                                    1.45,
-                                    Container(
-                                      width: 61,
-                                      height: 40,
-                                      margin: EdgeInsets.only(right: 20),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Center(
-                                          child: Text(
-                                        'Air conditioner',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    )),
-                                FadeAnimation(
-                                    1.46,
-                                    Container(
-                                      width: 60,
-                                      height: 40,
-                                      margin: EdgeInsets.only(right: 20),
-                                      child: Center(
-                                          child: Text(
-                                        'Washing Machine',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    )),
-                                FadeAnimation(
-                                    1.47,
-                                    Container(
-                                      width: 60,
-                                      height: 40,
-                                      margin: EdgeInsets.only(right: 20),
-                                      child: Center(
-                                          child: Text(
-                                        'Electric Oven',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    )),
-                              ],
-                            ),
                             SizedBox(
                               height: 60,
                             ),

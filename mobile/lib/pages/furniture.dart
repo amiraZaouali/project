@@ -18,17 +18,7 @@ class Furniture extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-                top: 20.0,
-              ),
-              child: TitleLarge(
-                title: 'Furniture',
-              ),
-            ),
-            SizedBox(height: 20),
+            SizedBox(height: 40),
             buildLampsWithSlider(),
             Padding(
               padding:

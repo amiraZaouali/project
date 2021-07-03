@@ -1,14 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:foodybite_app/pages/circular-chart.dart';
-import 'package:foodybite_app/screens/Fitness-App-HomeScreen.dart';
 import 'package:foodybite_app/screens/FitnessAppTheme.dart';
 import 'package:foodybite_app/utils/storage.dart';
+import 'package:foodybite_app/widgets/afterRegistration.dart';
 import 'package:google_fonts/google_fonts.dart';
-// ignore: unused_import
-import 'screens/landingScreen.dart';
-import 'screens/login-screen.dart';
 import 'screens/screens.dart';
 
 void main() {
@@ -29,7 +25,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: PieChartSample2());
+        home: AfterReg(username: "Anoir"));
   }
 }
 
